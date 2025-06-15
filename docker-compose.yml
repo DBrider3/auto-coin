@@ -1,0 +1,27 @@
+services:
+  auto-coin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: auto-coin
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./bitcoin_trading.db:/app/bitcoin_trading.db
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - TZ=Asia/Seoul
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
