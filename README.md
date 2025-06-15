@@ -36,13 +36,13 @@
 
 1. **저장소 클론**
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/DBrider3/auto-coin
    cd auto-coin
    ```
 
 2. **의존성 설치**
    ```bash
-   pip install -r requirements.txt
+   uv sync
    ```
 
 3. **환경 변수 설정**
